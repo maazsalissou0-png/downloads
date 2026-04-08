@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pygmy Zoo | Sharjah | Family Adventure Awaits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #004E89;
+            --accent-color: #00D4AA;
+            --warm-yellow: #FFD166;
+            --light-bg: #F8F9FA;
+            --dark-text: #1A1A1A;
+            --light-text: #FFFFFF;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #003d6b 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 212, 170, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #003d6b 50%, var(--primary-color) 100%);
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--warm-yellow);
+            color: var(--secondary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
+            background: #ffe08e;
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);
+            background: #00e5b5;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--light-text);
+        }
+
+        .btn-outline:hover {
+            background: var(--light-text);
+            color: var(--secondary-color);
+        }
+
+        /* Floating animals decoration */
+        .floating-animal {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-animal:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floating-animal:nth-child(2) { top: 60%; right: 8%; animation-delay: 1s; }
+        .floating-animal:nth-child(3) { top: 30%; right: 15%; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, #f5f5f5 0%, var(--light-bg) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .animals-highlight {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .animal-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .animal-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .animal-item strong {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .animals-highlight {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Visit Information Section */
+        #visit {
+            background: white;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, var(--light-bg) 0%, white 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .call-now-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .call-now-btn:hover {
+            background: #ff5a28;
+        }
+
+        /* Animals Section */
+        #animals {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #f0f0f0 100%);
+        }
+
+        .animals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .animal-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animal-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .animal-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card:nth-child(1) .animal-image { background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); }
+        .animal-card:nth-child(2) .animal-image { background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); }
+        .animal-card:nth-child(3) .animal-image { background: linear-gradient(135deg, #FF9999 0%, #FFD93D 100%); }
+        .animal-card:nth-child(4) .animal-image { background: linear-gradient(135deg, #A8E6CF 0%, #56AB2F 100%); }
+        .animal-card:nth-child(5) .animal-image { background: linear-gradient(135deg, #FFB6B9 0%, #FF8787 100%); }
+        .animal-card:nth-child(6) .animal-image { background: linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%); }
+
+        .animal-info {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animal-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .fun-fact {
+            background: var(--warm-yellow);
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Booking Section */
+        #booking {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #003d6b 100%);
+            color: white;
+        }
+
+        #booking .section-title {
+            color: white;
+        }
+
+        #booking .section-title::after {
+            background: linear-gradient(90deg, var(--warm-yellow), var(--accent-color));
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .booking-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+        }
+
+        .booking-benefits {
+            color: white;
+        }
+
+        .booking-benefits h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .benefit-text p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item:nth-child(1) { background: linear-gradient(135deg, #FFB6B9 0%, #FF8E72 100%); }
+        .gallery-item:nth-child(2) { background: linear-gradient(135deg, #FEC8D8 0%, #FFDAB9 100%); }
+        .gallery-item:nth-child(3) { background: linear-gradient(135deg, #A8E6CF 0%, #56CCF2 100%); }
+        .gallery-item:nth-child(4) { background: linear-gradient(135deg, #FFD3B6 0%, #FF9A76 100%); }
+        .gallery-item:nth-child(5) { background: linear-gradient(135deg, #FFAAA5 0%, #FF8B94 100%); }
+        .gallery-item:nth-child(6) { background: linear-gradient(135deg, #AA96DA 0%, #FCBAD3 100%); }
+        .gallery-item:nth-child(7) { background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%); }
+        .gallery-item:nth-child(8) { background: linear-gradient(135deg, #FFD89B 0%, #19547B 100%); }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #f0f0f0 100%);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-socials {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-socials a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* Scroll animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .animals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span class="logo-icon">🦁</span>
+            <span>Pygmy Zoo</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#animals">Animals</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-animal">🦒</div>
+        <div class="floating-animal">🐵</div>
+        <div class="floating-animal">🦘</div>
+        <div class="hero-content">
+            <h1>Welcome to Pygmy Zoo</h1>
+            <p>Discover unique miniature animals and enjoy a fun family experience</p>
+            <div class="hero-buttons">
+                <a href="#visit" class="btn btn-primary">🗺️ Visit Us</a>
+                <a href="#booking" class="btn btn-secondary">📅 Book Now</a>
+                <a href="#contact" class="btn btn-outline">💬 Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Pygmy Zoo</h2>
+        <p class="section-subtitle">Home to the world's most adorable miniature animals</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Experience Something Unique</h3>
+                <p>Welcome to Pygmy Zoo, Sharjah's most enchanting destination for family fun! We are dedicated to showcasing the incredible world of miniature animals, creating memorable experiences for visitors of all ages.</p>
+                <p>Our zoo features a carefully curated collection of rare and adorable pygmy animals from around the world. Each animal is cared for with the utmost dedication, and our expert team ensures they thrive in a safe, natural environment.</p>
+                <p>Whether you're a first-time visitor or a returning favorite, Pygmy Zoo offers an unforgettable adventure filled with wonder, education, and joy!</p>
+            </div>
+            <div>
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Featured Animals</h3>
+                <div class="animals-highlight">
+                    <div class="animal-item">
+                        <strong>🐴 Mini Horses</strong>
+                        <p>Tiny but mighty! Our miniature horses are the smallest you'll ever see.</p>
+                    </div>
+                    <div class="animal-item">
+                        <strong>🦘 Kangaroos</strong>
+                        <p>Hopping adorable! Watch our gentle kangaroos bounce around.</p>
+                    </div>
+                    <div class="animal-item">
+                        <strong>🐵 Monkeys</strong>
+                        <p>Playful and intelligent - our primate friends are always entertaining!</p>
+                    </div>
+                    <div class="animal-item">
+                        <strong>🦙 Llamas</strong>
+                        <p>Fluffy and friendly - perfect for up-close encounters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Information Section -->
+    <section id="visit">
+        <h2 class="section-title">Plan Your Visit</h2>
+        <p class="section-subtitle">Everything you need to know for an amazing day at Pygmy Zoo</p>
+        
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-icon">📍</div>
+                <h3>Location</h3>
+                <p>Al Sajaa, Sharjah, UAE</p>
+                <a href="https://maps.google.com/?q=Al+Sajaa+Sharjah" class="btn btn-secondary" style="display: block; width: 100%; text-align: center;">View Map</a>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">⏰</div>
+                <h3>Opening Hours</h3>
+                <p><strong>Daily:</strong> 10:00 AM – 12:00 AM</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Open 7 days a week<br>Last entry: 11:30 PM</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">📞</div>
+                <h3>Call Us</h3>
+                <p>056 526 3636</p>
+                <a href="tel:0565263636" class="btn call-now-btn" style="display: block; width: 100%; text-align: center;">📞 Call Now</a>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">🎟️</div>
+                <h3>Admission</h3>
+                <p>Family packages available</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Special group rates<br>Call for current pricing</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">🍴</div>
+                <h3>Dining</h3>
+                <p>Food and beverage facilities available</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Snacks, drinks & meals<br>Picnic areas welcome</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">♿</div>
+                <h3>Facilities</h3>
+                <p>Family-friendly amenities</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Wheelchair accessible<br>Kids play areas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animals Section -->
+    <section id="animals">
+        <h2 class="section-title">Our Adorable Animals</h2>
+        <p class="section-subtitle">Meet the stars of Pygmy Zoo</p>
+        
+        <div class="animals-grid">
+            <div class="animal-card">
+                <div class="animal-image">🐴</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Mini Horses</h3>
+                    <p class="animal-description">The tiniest horses in the world! Perfect for gentle petting and interactive experience.</p>
+                    <div class="fun-fact">⭐ Fun Fact: They live up to 35 years!</div>
+                </div>
+            </div>
+
+            <div class="animal-card">
+                <div class="animal-image">🦘</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Pygmy Kangaroos</h3>
+                    <p class="animal-description">Watch our adorable wallabies and pygmy kangaroos hop around in their natural habitat.</p>
+                    <div class="fun-fact">⭐ Fun Fact: They can jump up to 5 feet high!</div>
+                </div>
+            </div>
+
+            <div class="animal-card">
+                <div class="animal-image">🐵</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Playful Monkeys</h3>
+                    <p class="animal-description">Intelligent, curious, and hilarious! Our monkey family will keep you entertained.</p>
+                    <div class="fun-fact">⭐ Fun Fact: They recognize faces and emotions!</div>
+                </div>
+            </div>
+
+            <div class="animal-card">
+                <div class="animal-image">🦙</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Friendly Llamas</h3>
+                    <p class="animal-description">Soft, gentle, and perfect for close encounters. Great for photos!</p>
+                    <div class="fun-fact">⭐ Fun Fact: They can carry up to 100lbs!</div>
+                </div>
+            </div>
+
+            <div class="animal-card">
+                <div class="animal-image">🦎</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Exotic Reptiles</h3>
+                    <p class="animal-description">Fascinating creatures from across the globe. Safe and supervised interactions.</p>
+                    <div class="fun-fact">⭐ Fun Fact: Some can change colors!</div>
+                </div>
+            </div>
+
+            <div class="animal-card">
+                <div class="animal-image">🦜</div>
+                <div class="animal-info">
+                    <h3 class="animal-name">Colorful Parrots</h3>
+                    <p class="animal-description">Vibrant and intelligent birds that can mimic sounds and interact with visitors.</p>
+                    <div class="fun-fact">⭐ Fun Fact: Some parrots live 80+ years!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <h2 class="section-title">Book Your Visit Now!</h2>
+        <p class="section-subtitle">Reserve your spot for an unforgettable zoo experience</p>
+        
+        <div class="booking-container">
+            <form class="booking-form" onsubmit="handleBooking(event)">
+                <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Quick Booking</h3>
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="056 XXXX XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Preferred Date *</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visitors">Number of Visitors *</label>
+                    <select id="visitors" name="visitors" required>
+                        <option value="">Select number of people</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5+ People</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; text-align: center;">🎉 Complete Booking</button>
+            </form>
+
+            <div class="booking-benefits">
+                <h3>Why Book With Us?</h3>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✅</div>
+                    <div class="benefit-text">
+                        <h4>Instant Confirmation</h4>
+                        <p>Get your booking confirmed immediately via email and SMS.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏰</div>
+                    <div class="benefit-text">
+                        <h4>Skip the Line</h4>
+                        <p>Bypass the queue and go straight to enjoying the zoo!</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-text">
+                        <h4>Best Prices</h4>
+                        <p>Get the best rates when you book online in advance.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎁</div>
+                    <div class="benefit-text">
+                        <h4>Exclusive Perks</h4>
+                        <p>Special gifts and discounts for online bookers!</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-text">
+                        <h4>Easy Management</h4>
+                        <p>Manage your booking anytime from your phone.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎓</div>
+                    <div class="benefit-text">
+                        <h4>Educational Tours</h4>
+                        <p>Learn amazing facts about our animals with our experts!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">Photo Gallery</h2>
+        <p class="section-subtitle">Beautiful moments from Pygmy Zoo</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">🐴</div>
+            <div class="gallery-item">👨‍👩‍👧‍👦</div>
+            <div class="gallery-item">🦘</div>
+            <div class="gallery-item">🎠</div>
+            <div class="gallery-item">🐵</div>
+            <div class="gallery-item">😊</div>
+            <div class="gallery-item">🦙</div>
+            <div class="gallery-item">🌟</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you! Reach out with any questions.</p>
+        
+        <div class="contact-methods">
+            <div class="contact-method">
+                <div class="contact-icon">📞</div>
+                <h3>Call Us</h3>
+                <p>056 526 3636</p>
+                <a href="tel:0565263636">📞 Call Now</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">💬</div>
+                <h3>WhatsApp</h3>
+                <p>Chat with us instantly</p>
+                <a href="https://wa.me/971565263636" target="_blank">💬 WhatsApp Us</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">📧</div>
+                <h3>Email Us</h3>
+                <p>hello@pygmyzoo.ae</p>
+                <a href="mailto:hello@pygmyzoo.ae">✉️ Send Email</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">📍</div>
+                <h3>Visit Us</h3>
+                <p>Al Sajaa, Sharjah</p>
+                <a href="https://maps.google.com/?q=Al+Sajaa+Sharjah" target="_blank">🗺️ Get Directions</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">📸</div>
+                <h3>Follow Us</h3>
+                <p>Instagram & Social Media</p>
+                <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">⏰</div>
+                <h3>Hours of Operation</h3>
+                <p>10:00 AM – 12:00 AM Daily</p>
+                <a href="#visit">ℹ️ More Info</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>🦁 Pygmy Zoo | Sharjah, UAE</h3>
+            <p>Creating magical moments with miniature animals</p>
+            
+            <div class="footer-socials">
+                <a href="https://facebook.com" target="_blank" title="Facebook">f</a>
+                <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+                <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                <a href="https://tiktok.com" target="_blank" title="TikTok">🎵</a>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                © 2024 Pygmy Zoo. All rights reserved. | 056 526 3636 | Al Sajaa, Sharjah, UAE
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Handle booking form submission
+        function handleBooking(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const visitors = document.getElementById('visitors').value;
+
+            // Create a message
+            const message = `Hello! I'd like to book a visit for ${visitors} person(s) on ${date}. Name: ${name}, Phone: ${phone}`;
+            
+            // WhatsApp link
+            const whatsappLink = `https://wa.me/971565263636?text=${encodeURIComponent(message)}`;
+            
+            // Show confirmation and redirect
+            alert('Thank you for booking! We will contact you shortly to confirm your reservation.\n\nYou will be redirected to WhatsApp for direct communication.');
+            window.open(whatsappLink, '_blank');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Intersection Observer for fade-in animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all cards and animals for animation
+        document.querySelectorAll('.animal-card, .info-card, .contact-method, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add animation delay to stagger the fade-ins
+        document.querySelectorAll('.animal-card, .info-card, .contact-method, .gallery-item').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+    </script>
+</body>
+</html>
